@@ -1,0 +1,53 @@
+@extends('app')
+
+@section('content')
+    <h1>ACM @ UVA</h1>
+    <i>The Undergraduate Computer Science Community!</i>
+    <div class="pt-3">
+        <a href="https://discord.gg/wxWgbVs" class="btn pt-auto me-3 btn-purple">
+            <i class="fa-brands fa-discord me-2"></i>
+            Discord
+        </a>
+        <a href="https://lists.virginia.edu/sympa/subscribe/acm-members" class="btn pt-auto me-3 btn-blue">
+            <i class="fa-solid fa-user-plus me-2"></i>
+            Mailing List
+        </a>
+        <a href="mailto:acm-officers@virginia.edu" class="btn pt-auto me-3 btn-pink">
+            <i class="fa-solid fa-envelope me-2"></i>
+            Contact Us
+        </a>
+    </div>
+{{--    <div id="homePageCarousel" class="carousel slide mt-4 w-50 mx-auto" data-bs-ride="false">--}}
+{{--        <div class="carousel-indicators">--}}
+{{--            {% for carousel_image in carousel_images %}--}}
+{{--            <button type="button" data-bs-target="#homePageCarousel" data-bs-slide-to="{{ forloop.counter0 }}"--}}
+{{--                    {% if forloop.first %} class="active"--}}
+{{--                    aria-current="true" {% endif %} aria-label="{{ carousel_image.label }}"></button>--}}
+{{--            {% endfor %}--}}
+{{--        </div>--}}
+{{--        <div class="carousel-inner">--}}
+{{--            {% for carousel_image in carousel_images %}--}}
+{{--            <div class="carousel-item {% if forloop.first %} active {% endif %}">--}}
+{{--                <img src="{{ carousel_image.image.url }}" class="d-block w-100"--}}
+{{--                     alt="{{ carousel_image.label }}">--}}
+{{--                <div class="carousel-caption d-none d-md-block">--}}
+{{--                    <h5>{{ carousel_image.label }}</h5>--}}
+{{--                    {% if carousel_image.caption %}--}}
+{{--                    <p>{{ carousel_image.caption }}</p>--}}
+{{--                    {% endif %}--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            {% endfor %}--}}
+{{--        </div>--}}
+{{--        <button class="carousel-control-prev" type="button" data-bs-target="#homePageCarousel"--}}
+{{--                data-bs-slide="prev">--}}
+{{--            <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+{{--            <span class="visually-hidden">Previous</span>--}}
+{{--        </button>--}}
+{{--        <button class="carousel-control-next" type="button" data-bs-target="#homePageCarousel"--}}
+{{--                data-bs-slide="next">--}}
+{{--            <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
+{{--            <span class="visually-hidden">Next</span>--}}
+{{--        </button>--}}
+{{--    </div>--}}
+@endsection

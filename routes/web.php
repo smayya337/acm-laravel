@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\EnsureUserIsAdmin;
 
 Route::get('/', function () {
     return view('index');
@@ -37,5 +38,9 @@ Route::get('/login', function () {
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login');
-    Route::get('/logout', 'logout');
+    Route::get('/logout', 'logout')->name('logout');
 });
+
+Route::get('/admin', function () {
+    return view('admin');
+})->middleware(['auth', EnsureUserIsAdmin::class])->name('admin');

@@ -19,9 +19,12 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
+        'first_name',
+        'last_name',
+        'is_admin',
     ];
 
     /**
@@ -53,5 +56,9 @@ class User extends Authenticatable
 
     public function events(): BelongsToMany {
         return $this->belongsToMany(Event::class);
+    }
+
+    public function isAdmin(): bool {
+        return $this->is_admin;
     }
 }

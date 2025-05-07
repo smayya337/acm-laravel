@@ -47,6 +47,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
         ];
     }
 
@@ -56,9 +57,5 @@ class User extends Authenticatable
 
     public function events(): BelongsToMany {
         return $this->belongsToMany(Event::class);
-    }
-
-    public function isAdmin(): bool {
-        return $this->is_admin;
     }
 }

@@ -11,9 +11,9 @@ class BadgePolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class BadgePolicy
      */
     public function view(User $user, Badge $badge): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class BadgePolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->is_admin;
     }
 
     /**
@@ -37,7 +37,7 @@ class BadgePolicy
      */
     public function update(User $user, Badge $badge): bool
     {
-        return false;
+        return $user->is_admin;
     }
 
     /**
@@ -45,7 +45,7 @@ class BadgePolicy
      */
     public function delete(User $user, Badge $badge): bool
     {
-        return false;
+        return $user->is_admin;
     }
 
     /**
@@ -53,7 +53,7 @@ class BadgePolicy
      */
     public function restore(User $user, Badge $badge): bool
     {
-        return false;
+        return $user->is_admin;
     }
 
     /**
@@ -61,6 +61,6 @@ class BadgePolicy
      */
     public function forceDelete(User $user, Badge $badge): bool
     {
-        return false;
+        return $user->is_admin;
     }
 }

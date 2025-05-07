@@ -19,6 +19,20 @@ class Event extends Model
         ];
     }
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+    protected $fillable = [
+        'name',
+        'start',
+        'end',
+        'location',
+        'description',
+        'image',
+    ];
+
     public function users(): BelongsToMany {
         return $this->belongsToMany(User::class);
     }

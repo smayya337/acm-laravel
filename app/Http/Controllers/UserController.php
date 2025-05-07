@@ -7,6 +7,8 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Laravel\Facades\Image;
 
 class UserController extends Controller
 {
@@ -37,13 +39,9 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $username)
+    public function show(User $user)
     {
-        $matches = DB::table('users')->where('username', $username);
-        if ($matches->count() == 0) {
-            abort(404);
-        }
-        return view('user_page', ['req_user' => $matches->first()]);
+        return view('user_page', ['req_user' => $user]);
     }
 
     /**
@@ -59,7 +57,19 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $validated = $request->validated();
+        $image = $request->file('profile_image');
+        $image_data = Image::read($image);
+        $dimension = min($image_data->width(), $image_data->height());
+        $image_data = $image_data->crop($dimension, $dimension, position: 'center');
+        $path = 'images/users/' . $user->id . '.webp';
+        Storage::disk('public')->makeDirectory('images/users');
+        $image_data->save(Storage::disk('public')->path($path));
+        $validated['image'] = $path;
+        $user->update($validated);
+//        dd($user);
+        $user->save();
+        return back();
     }
 
     /**

@@ -12,7 +12,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('update', User::class);
+        return $this->user()->can('update', $this->user);
     }
 
     /**
@@ -23,7 +23,8 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'bio' => 'nullable|string',
+            'image' => 'nullable|file|image|size:2048',
         ];
     }
 }

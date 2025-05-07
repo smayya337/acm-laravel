@@ -21,6 +21,7 @@
                        title="Email {{ $req_user->first_name }} {{ $req_user->last_name }}"
                        class="p-2.5 rounded-full border border-base-300 hover:bg-base-200 transition duration-150 ease-in-out self-start sm:self-center">
                         {{-- Using a common SVG icon for email (e.g., Heroicons MailIcon) --}}
+                        {{-- TODO: replace with a font icon --}}
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-content" viewBox="0 0 20 20"
                              fill="currentColor">
                             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
@@ -83,12 +84,11 @@
     </div>
 
     {{-- Modal for Editing Profile (DaisyUI) --}}
-    @if(Auth::check() && Auth::user()->username == $req_user->username)
-        Modal toggle checkbox
+    @can('update', $req_user)
         <input type="checkbox" id="profileModal" class="modal-toggle"/>
         <div class="modal modal-bottom sm:modal-middle">
             <div class="modal-box">
-                <form method="POST" action="{{ route('user_page.update', ['username' => $req_user->username]) }}"
+                <form method="POST" action="{{ route('user_page.update', ['user' => $req_user]) }}"
                       enctype="multipart/form-data">
                     @csrf
                     @method('POST')
@@ -118,7 +118,7 @@
                                 <legend class="fieldset-legend">Profile Image</legend>
                                 <input name="profile_image" type="file"
                                        class="file-input file-input-primary w-full @error('profile_image') file-input-error @enderror"/>
-                                <label class="label">Optional. Max size 10MB.</label>
+                                <label class="label">Optional. Max size 2MB.</label>
                             </fieldset>
                             @error('profile_image')
                             <label class="label">
@@ -136,7 +136,7 @@
             </div>
             <label class="modal-backdrop" for="profileModal">Close</label>
         </div>
-    @endif
+    @endcan
 
 @endsection
 

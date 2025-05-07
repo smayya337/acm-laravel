@@ -1,6 +1,8 @@
+@php use Illuminate\Support\Facades\Storage; @endphp
 {{-- TODO: how do I include this component in other views? --}}
 @if($user->image)
-    <img src="{{ $user->image }}" class="rounded-full border"  alt="Image of {{ $user->first_name }} {{ $user->last_name }}"/>
+    <img src="{{ Storage::url($user->image) }}" class="rounded-full border"
+         alt="Image of {{ $user->first_name }} {{ $user->last_name }}"/>
 @else
     {{-- TODO: make this appropriately sized --}}
     <div class="rounded-full border flex"

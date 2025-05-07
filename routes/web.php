@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\EnsureUserIsAdmin;
-use \Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     return view('index');
@@ -14,10 +14,7 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/events', function () {
-    $events = DB::table('events')->where('start', '>=', now())->orderBy('start')->get();
-    return view('events', ['events' => $events]);
-})->name('events');
+Route::get('/events', [EventController::class, 'index'])->name('events');
 
 Route::get('/icpc', function () {
     return view('icpc');
@@ -31,22 +28,11 @@ Route::get('/donate', function () {
     return view('donate');
 })->name('donate');
 
-Route::get('/user/{username}', [UserController::class, 'show'])->name('user_page');
+Route::get('/user/{user}', [UserController::class, 'show'])->middleware('can:view,user')->name('user_page');
 
-Route::post('/user/{username}', function (string $username) {
-    $matches = DB::table('users')->where('username', $username);
-    if ($matches->count() == 0) {
-        abort(400);
-    }
-})->name('user_page.update');
+Route::post('/user/{user}', [UserController::class, 'update'])->middleware('can:update,user')->name('user_page.update');
 
-Route::get('/event/{id}', function (int $id) {
-    $matches = DB::table('events')->where('id', $id);
-    if ($matches->count() == 0) {
-        abort(404);
-    }
-    return view('event_page', ['event' => $matches->first()]);
-})->name('event_page');
+Route::get('/event/{event}', [EventController::class, 'show'])->middleware('can:view,event')->name('event_page');
 
 Route::get('/login', function () {
     return view('login');

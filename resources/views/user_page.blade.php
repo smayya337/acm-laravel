@@ -22,10 +22,9 @@
                        class="p-2.5 rounded-full border border-base-300 hover:bg-base-200 transition duration-150 ease-in-out self-start sm:self-center">
                         {{-- Using a common SVG icon for email (e.g., Heroicons MailIcon) --}}
                         {{-- TODO: replace with a font icon --}}
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-content" viewBox="0 0 20 20"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-content" viewBox="0 0 512 512"
                              fill="currentColor">
-                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                            <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/>
                         </svg>
                     </a>
                 </div>
@@ -47,7 +46,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20"
                              fill="currentColor">
                             <path
-                                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+                                    d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
                         </svg>
                     </label>
                 @endcan

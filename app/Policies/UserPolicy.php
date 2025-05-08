@@ -18,7 +18,7 @@ class UserPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, User $model): bool
+    public function view(?User $user, User $model): bool
     {
         return !$model->hidden;
     }
@@ -36,7 +36,7 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        return $user->is_admin || $user === $model;
+        return $user->is_admin || $user->id === $model->id;
     }
 
     /**

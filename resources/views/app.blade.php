@@ -49,8 +49,8 @@
                 <div class="w-10 rounded-full">
                     @if(Auth::user()->image)
                         <img
-                            alt="Tailwind CSS Navbar component"
-                            src="{{ url(Auth::user()->image) }}" />
+                            alt="Image of {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}"
+                            src="{{ Storage::url(Auth::user()->image) }}" />
                     @else
                         <span class="fa-solid fa-user"></span>
                     @endif

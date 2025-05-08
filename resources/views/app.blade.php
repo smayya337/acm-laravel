@@ -46,13 +46,13 @@
         @auth
         <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                <div class="w-10 rounded-full">
+                <div class="w-10 rounded-full @if(!Auth::user()->image) border @endif">
                     @if(Auth::user()->image)
                         <img
                             alt="Image of {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}"
                             src="{{ Storage::url(Auth::user()->image) }}" />
                     @else
-                        <span class="fa-solid fa-user"></span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-224 -192 896 1024" fill="currentColor"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/></svg>
                     @endif
                 </div>
             </div>

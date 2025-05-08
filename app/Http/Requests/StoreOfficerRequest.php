@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Officer;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreOfficerRequest extends FormRequest
@@ -11,7 +12,7 @@ class StoreOfficerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return $this->user()->can('create', Officer::class);
     }
 
     /**
@@ -22,7 +23,10 @@ class StoreOfficerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => 'exists:users,username',
+            'position' => 'string',
+            'year' => 'integer|min:1819|max:' . date('Y'),
+            'sort_order' => 'integer|min:0',
         ];
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -28,9 +30,10 @@ Route::get('/donate', function () {
     return view('donate');
 })->name('donate');
 
-Route::get('/user/{user}', [UserController::class, 'show'])->middleware('can:view,user')->name('user_page');
-
-Route::post('/user/{user}', [UserController::class, 'update'])->middleware('can:update,user')->name('user_page.update');
+Route::controller(UserController::class)->group(function () {
+    Route::get('/user/{user}', 'show')->middleware('can:view,user')->name('user_page');
+    Route::post('/user/{user}', 'update')->middleware('can:update,user')->name('user_page.update');
+});
 
 Route::get('/event/{event}', [EventController::class, 'show'])->middleware('can:view,event')->name('event_page');
 
@@ -43,6 +46,17 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/logout', 'logout')->name('logout');
 });
 
-Route::get('/admin', function () {
-    return view('admin');
-})->middleware(['auth', EnsureUserIsAdmin::class])->name('admin');
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin', 'index')->middleware(['auth', EnsureUserIsAdmin::class])->name('admin');
+    Route::get('/admin/officers', 'officers')->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.officers');
+    Route::get('/admin/search/user', 'searchUsers')->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.search.user');
+});
+
+Route::controller(OfficerController::class)->group(function () {
+    Route::get('/officers', 'index')->name('officers');
+    Route::get('/officers/{year}', 'showByYear')->name('officers.by_year');
+    Route::post('/admin/officers', 'store')->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.officers.store');
+    Route::get('/admin/officers/{officer}', 'show')->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.officers.show');
+    Route::post('/admin/officers/{officer}', 'update')->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.officers.update');
+    Route::post('/admin/officers/{officer}/delete', 'destroy')->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.officers.delete');
+});

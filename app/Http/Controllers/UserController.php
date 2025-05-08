@@ -66,8 +66,10 @@ class UserController extends Controller
         Storage::disk('public')->makeDirectory('images/users');
         $image_data->save(Storage::disk('public')->path($path));
         $validated['image'] = $path;
+        if ($validated['bio'] === null) {
+            $validated['bio'] = '';
+        }
         $user->update($validated);
-//        dd($user);
         $user->save();
         return back();
     }

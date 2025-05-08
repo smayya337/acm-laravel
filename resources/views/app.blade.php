@@ -24,6 +24,7 @@
                 tabindex="0"
                 class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                 <li><a href="{{ route('about') }}">About</a></li>
+                <li><a href="{{ route('officers') }}">Officers</a></li>
                 <li><a href="{{ route('events') }}">Events</a></li>
                 <li><a href="{{ route('icpc') }}">ICPC</a></li>
                 <li><a href="{{ route('hspc') }}">HSPC</a></li>
@@ -36,6 +37,7 @@
     <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
             <li><a href="{{ route('about') }}">About</a></li>
+            <li><a href="{{ route('officers') }}">Officers</a></li>
             <li><a href="{{ route('events') }}">Events</a></li>
             <li><a href="{{ route('icpc') }}">ICPC</a></li>
             <li><a href="{{ route('hspc') }}">HSPC</a></li>
@@ -95,5 +97,6 @@
             Reserved.</small>
     </footer>
 </div>
+@stack('scripts')
 </body>
 </html>

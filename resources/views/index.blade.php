@@ -4,15 +4,15 @@
     <h1>ACM @ UVA</h1>
     <i>The Undergraduate Computer Science Community!</i>
     <div class="pt-3">
-        <a href="https://discord.gg/wxWgbVs" class="btn pt-auto me-3 btn-purple">
+        <a href="https://discord.gg/wxWgbVs" class="btn pt-auto me-3 btn-primary">
             <i class="fa-brands fa-discord me-2"></i>
             Discord
         </a>
-        <a href="https://lists.virginia.edu/sympa/subscribe/acm-members" class="btn pt-auto me-3 btn-blue">
+        <a href="https://lists.virginia.edu/sympa/subscribe/acm-members" class="btn pt-auto me-3 btn-primary">
             <i class="fa-solid fa-user-plus me-2"></i>
             Mailing List
         </a>
-        <a href="mailto:acm-officers@virginia.edu" class="btn pt-auto me-3 btn-pink">
+        <a href="mailto:acm-officers@virginia.edu" class="btn pt-auto me-3 btn-primary">
             <i class="fa-solid fa-envelope me-2"></i>
             Contact Us
         </a>

@@ -11,10 +11,10 @@
     <p>We accept Venmo and Zelle (linked below). If neither of these options work for you, feel free to contact us at <a
             href="mailto:acm-officers@virginia.edu">acm-officers@virginia.edu</a>.</p>
     <div class="pt-2">
-        <a href="{{ env('VENMO') }}" class="btn">
+        <a href="{{ env('VENMO') }}" class="btn btn-primary">
             Venmo
         </a>
-        <a href="{{ env('ZELLE') }}" class="btn">
+        <a href="{{ env('ZELLE') }}" class="btn btn-primary">
             Zelle
         </a>
     </div>

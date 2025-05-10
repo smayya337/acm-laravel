@@ -46,7 +46,7 @@
     </div>
     <div class="navbar-end">
         @auth
-        <div class="dropdown dropdown-end">
+        <div class="dropdown dropdown-end me-2">
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                 <div class="w-10 rounded-full @if(!Auth::user()->image) border @endif">
                     @if(Auth::user()->image)

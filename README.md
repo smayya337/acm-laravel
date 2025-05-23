@@ -13,3 +13,11 @@ This is a prototype of a redesigned [ACM @ UVA website](https://acm.cs.virginia.
 * Home page image gallery
 * Notification toasts
 * Security testing
+
+## Dependencies
+
+* php-cli
+* php-pdo
+* php-mbstring
+* php-xml
+* php-gd

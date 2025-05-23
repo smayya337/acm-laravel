@@ -3,7 +3,7 @@
 @section('content')
     <h1>ICPC</h1>
     <p>The International Collegiate Programming Contest is a problem-solving competition for undergraduates.</p>
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
             <h2>World Finals Appearances</h2>
             <div class="join join-vertical bg-base-100">

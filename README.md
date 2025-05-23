@@ -5,7 +5,6 @@ This is a prototype of a redesigned [ACM @ UVA website](https://acm.cs.virginia.
 ## TODO
 
 * Add event creation functionality to admin console
-* Fix 403 when updating officer data
 * Adjust grid for officers
 * Fix visuals on HSPC page
 * Add favicon

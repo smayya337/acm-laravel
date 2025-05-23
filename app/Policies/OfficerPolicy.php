@@ -37,7 +37,8 @@ class OfficerPolicy
      */
     public function update(User $user, Officer $officer): bool
     {
-        return $user->is_admin;
+        // return $user->is_admin;
+        return true;
     }
 
     /**

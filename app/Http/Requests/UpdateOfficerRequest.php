@@ -12,7 +12,7 @@ class UpdateOfficerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('update', $this->id);
+        return $this->user()->can('update', $this->officer);
     }
 
     /**

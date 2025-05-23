@@ -6,7 +6,6 @@ use App\Models\Event;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 use function Laravel\Prompts\text;
-use function Laravel\Prompts\password;
 
 class CreateEvent extends Command
 {

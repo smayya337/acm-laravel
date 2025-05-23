@@ -7,11 +7,11 @@ This is a prototype of a redesigned [ACM @ UVA website](https://acm.cs.virginia.
 * Add event creation functionality to admin console
 * Adjust grid for officers
 * Fix visuals on HSPC page
-* Add favicon
 * SAML integration
 * Home page image gallery
 * Notification toasts
 * Security testing
+* Badges
 
 ## Dependencies
 

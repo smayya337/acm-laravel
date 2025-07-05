@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Laravel\Facades\Image;
+use App\Helpers\FileHelper;
 
 class UserController extends Controller
 {
@@ -41,7 +42,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('user_page', ['req_user' => $user]);
+        //
     }
 
     /**
@@ -55,23 +56,27 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
-        $validated = $request->validated();
-        $image = $request->file('profile_image');
-        $image_data = Image::read($image);
-        $dimension = min($image_data->width(), $image_data->height());
-        $image_data = $image_data->crop($dimension, $dimension, position: 'center');
-        $path = 'images/users/' . $user->id . '.webp';
-        Storage::disk('public')->makeDirectory('images/users');
-        $image_data->save(Storage::disk('public')->path($path));
-        $validated['image'] = $path;
-        if ($validated['bio'] === null) {
-            $validated['bio'] = '';
+        $this->authorize('update', $user);
+        
+        $validated = $request->validate([
+            'bio' => 'nullable|string|max:1000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:' . FileHelper::getMaxUploadSizeKB()
+        ]);
+        
+        if ($request->hasFile('image')) {
+            // Delete old image if it exists
+            if ($user->image) {
+                Storage::disk('public')->delete($user->image);
+            }
+            $validated['image'] = $request->file('image')->store('users', 'public');
         }
+        
         $user->update($validated);
-        $user->save();
-        return back();
+        
+        session()->flash('success', 'Your profile has been updated!');
+        return redirect()->route('user_page', $user->username);
     }
 
     /**

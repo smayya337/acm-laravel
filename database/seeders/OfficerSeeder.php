@@ -59,7 +59,59 @@ class OfficerSeeder extends Seeder
                 'username' => 'pvz6tx',
                 'sort_order' => 9,
                 'position' => 'HSPC Head Judge'
+            ]
+        ];
+        $officers_25_26 = [
+            [
+                'username' => 'eav6vg',
+                'sort_order' => 1,
+                'position' => 'Chair'
             ],
+            [
+                'username' => 'jwd2xc',
+                'sort_order' => 2,
+                'position' => 'Vice Chair'
+            ],
+            [
+                'username' => 'bvn9ad',
+                'sort_order' => 4,
+                'position' => 'Treasurer'
+            ],
+            [
+                'username' => 'kcp7wm',
+                'sort_order' => 5,
+                'position' => 'Event Coordinator'
+            ],
+            [
+                'username' => 'yez9pj',
+                'sort_order' => 6,
+                'position' => 'Event Coordinator'
+            ],
+            [
+                'username' => 'wvw4we',
+                'sort_order' => 7,
+                'position' => 'Outreach Officer'
+            ],
+            [
+                'username' => 'dxw2ds',
+                'sort_order' => 8,
+                'position' => 'Outreach Officer'
+            ],
+            [
+                'username' => 'bkh3jf',
+                'sort_order' => 9,
+                'position' => 'Webmaster'
+            ],
+            [
+                'username' => 'jqk5ct',
+                'sort_order' => 10,
+                'position' => 'HSPC Director'
+            ],
+            [
+                'username' => 'vmf5yp',
+                'sort_order' => 11,
+                'position' => 'HSPC Head Judge'
+            ]
         ];
         for ($i = 0; $i < sizeof($officers_24_25); $i++) {
             $officer = $officers_24_25[$i];
@@ -67,6 +119,14 @@ class OfficerSeeder extends Seeder
             $officer['user_id'] = $user_id;
             unset($officer['username']);
             $officer['year'] = 2024;
+            DB::table('officers')->insert($officer);
+        }
+        for ($i = 0; $i < sizeof($officers_25_26); $i++) {
+            $officer = $officers_25_26[$i];
+            $user_id = DB::table('users')->where('username', $officer['username'])->value('id');
+            $officer['user_id'] = $user_id;
+            unset($officer['username']);
+            $officer['year'] = 2025;
             DB::table('officers')->insert($officer);
         }
     }

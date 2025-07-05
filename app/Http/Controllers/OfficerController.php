@@ -14,12 +14,7 @@ class OfficerController extends Controller
      */
     public function index()
     {
-        $year = now()->year;
-        $largest_in_db = DB::table("officers")->max('year');
-        if ($largest_in_db !== null) {
-            $year = $largest_in_db;
-        }
-        return $this->showByYear($year);
+        //
     }
 
     /**
@@ -35,12 +30,7 @@ class OfficerController extends Controller
      */
     public function store(StoreOfficerRequest $request)
     {
-        $validated = $request->validated();
-        $user_id = DB::table('users')->where('username', '=', $validated['user_id'])->value('id');
-        $validated['user_id'] = $user_id;
-        $officer = new Officer($validated);
-        $officer->save();
-        return back();
+        //
     }
 
     /**
@@ -48,7 +38,7 @@ class OfficerController extends Controller
      */
     public function show(Officer $officer)
     {
-        return view('admin.officer_detail', compact('officer'));
+        //
     }
 
     /**
@@ -64,12 +54,7 @@ class OfficerController extends Controller
      */
     public function update(UpdateOfficerRequest $request, Officer $officer)
     {
-        $validated = $request->validated();
-        $user_id = DB::table('users')->where('username', '=', $validated['user_id'])->value('id');
-        $validated['user_id'] = $user_id;
-        $officer->update($validated);
-        $officer->save();
-        return back();
+        //
     }
 
     /**
@@ -77,13 +62,6 @@ class OfficerController extends Controller
      */
     public function destroy(Officer $officer)
     {
-        $officer->delete();
-        return redirect()->route('admin.officers');
-    }
-
-    public function showByYear(int $year) {
-        $officers = Officer::where('year', '=', $year)->get();
-        $all_years = DB::table('officers')->orderByDesc('year')->groupBy('year')->distinct()->pluck('year');
-        return view('officers', compact('officers', 'year', 'all_years'));
+        //
     }
 }

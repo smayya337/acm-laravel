@@ -14,8 +14,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = DB::table('events')->where('start', '>=', now())->orderBy('start')->get();
-        return view('events', ['events' => $events]);
+        //
     }
 
     /**
@@ -39,7 +38,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return view('event_page', ['event' => $event]);
+        //
     }
 
     /**

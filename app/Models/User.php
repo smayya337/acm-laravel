@@ -25,6 +25,7 @@ class User extends Authenticatable
         'first_name',
         'last_name',
         'is_admin',
+        'hidden',
         'bio',
         'image'
     ];
@@ -44,15 +45,12 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-            'is_admin' => 'boolean',
-            'hidden' => 'boolean',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+        'is_admin' => 'boolean',
+        'hidden' => 'boolean',
+    ];
 
     public function badges(): BelongsToMany {
         return $this->belongsToMany(Badge::class);

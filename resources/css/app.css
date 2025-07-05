@@ -4,6 +4,8 @@
 }
 @plugin '@tailwindcss/typography';
 
+@import './fontawesome.min.css';
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
@@ -31,4 +33,28 @@
     .container {
         max-width: 128rem;
     }
+}
+
+.badge-blue {
+    @apply badge-primary rounded-box text-nowrap;
+}
+
+.badge-green {
+    @apply badge-success rounded-box;
+}
+
+.badge-yellow {
+    @apply badge-warning rounded-box;
+}
+
+.badge-red {
+    @apply badge-error rounded-box;
+}
+
+.badge-gray {
+    @apply badge-secondary rounded-box;
+}
+
+a:not(.btn) {
+    @apply hover:text-accent;
 }

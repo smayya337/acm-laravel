@@ -17,12 +17,11 @@ class Officer extends Model
         'sort_order',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'faculty_advisor' => 'boolean',
-        ];
-    }
+    protected $casts = [
+        'year' => 'integer',
+        'sort_order' => 'integer',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

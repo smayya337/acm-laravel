@@ -1,75 +1,223 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\OfficerController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\EnsureUserIsAdmin;
 
-// Standard routes (non-interactive)
-
+// Home page
 Route::get('/', function () {
     return view('index');
-})->name('home');
+})->name('index');
 
+// About page
 Route::get('/about', function () {
-    return view('about');
+    try {
+        $year = \App\Models\Officer::orderBy('year', 'desc')->first()->year;
+    } catch (\Exception $e) {
+        $year = now()->year;
+    }
+    
+    $past_years = \App\Models\Officer::where('year', '<', $year)
+        ->whereHas('user', function($query) {
+            $query->where('hidden', false);
+        })
+        ->distinct()
+        ->pluck('year')
+        ->sort()
+        ->reverse()
+        ->map(function($py) {
+            return [
+                'year' => $py . '-' . ($py + 1),
+                'link' => '/about/' . $py
+            ];
+        })
+        ->values();
+    
+    $officers = \App\Models\Officer::where('year', $year)
+        ->whereHas('user', function($query) {
+            $query->where('hidden', false);
+        })
+        ->orderBy('sort_order')
+        ->orderBy('user_id')
+        ->get();
+    
+    $academic_year = $year . '-' . ($year + 1);
+    
+    return view('about', compact('officers', 'academic_year', 'past_years'));
 })->name('about');
 
+// Past officers page
+Route::get('/about/{year}', function ($year) {
+    $officers = \App\Models\Officer::where('year', $year)
+        ->whereHas('user', function($query) {
+            $query->where('hidden', false);
+        })
+        ->orderBy('sort_order')
+        ->orderBy('user_id')
+        ->get();
+    
+    $academic_year = $year . '-' . ($year + 1);
+    
+    if ($officers->count() == 0) {
+        abort(404);
+    }
+    
+    return view('past_officers', compact('officers', 'academic_year'));
+})->name('past_officers');
+
+// Events page
+Route::get('/events', function () {
+    $events = \App\Models\Event::where('start', '>=', now())->orderBy('start')->get();
+    return view('events', compact('events'));
+})->name('events');
+
+// Individual event page
+Route::get('/events/{event}', function (\App\Models\Event $event) {
+    return view('event_page', compact('event'));
+})->name('event_page');
+
+// Join event
+Route::post('/events/{event}/join', function (\App\Models\Event $event) {
+    if (!auth()->check()) {
+        session()->flash('error', 'You must be logged in to join events.');
+        return redirect()->route('event_page', $event);
+    }
+    
+    if ($event->users->contains(auth()->user())) {
+        session()->flash('error', 'You are already attending this event.');
+    } else {
+        $event->users()->attach(auth()->id());
+        session()->flash('success', "You've been added to the attendees list for this event.");
+    }
+    
+    return redirect()->route('event_page', $event);
+})->name('events.join');
+
+// Leave event
+Route::delete('/events/{event}/leave', function (\App\Models\Event $event) {
+    if (!auth()->check()) {
+        session()->flash('error', 'You must be logged in to leave events.');
+        return redirect()->route('event_page', $event);
+    }
+    
+    if ($event->users->contains(auth()->user())) {
+        $event->users()->detach(auth()->id());
+        session()->flash('success', "You've been removed from the attendees list for this event.");
+    } else {
+        session()->flash('error', 'You are not attending this event.');
+    }
+    
+    return redirect()->route('event_page', $event);
+})->name('events.leave');
+
+// ICPC page
 Route::get('/icpc', function () {
     return view('icpc');
 })->name('icpc');
 
+// HSPC page
 Route::get('/hspc', function () {
     return view('hspc');
 })->name('hspc');
 
+// Donate page
 Route::get('/donate', function () {
-    return view('donate');
+    $venmo = config('app.venmo_link', 'https://venmo.com/acm-uva');
+    $zelle = config('app.zelle_link', 'mailto:acm-officers@virginia.edu');
+    return view('donate', compact('venmo', 'zelle'));
 })->name('donate');
 
-// Auth
+// User profile page
+Route::get('/users/{username}', function ($username) {
+    $user = \App\Models\User::where('username', $username)->first();
+    
+    if (!$user || !auth()->user()->can('view', $user)) {
+        abort(404);
+    }
+    
+    $events_attended = $user->events()->orderBy('start', 'desc')->get();
+    $badges = $user->badges;
+    
+    return view('user_page', compact('user', 'events_attended', 'badges'));
+})->name('user_page');
 
+// User update route with policy authorization
+Route::post('/users/{username}', function ($username) {
+    $user = \App\Models\User::where('username', $username)->first();
+    
+    if (!$user) {
+        abort(400);
+    }
+
+    if (!auth()->user()->can('update', $user)) {
+        abort(403);
+    }
+    
+    return app(\App\Http\Controllers\UserController::class)->update(request(), $user);
+})->name('user.update');
+
+// Authentication routes
 Route::get('/login', function () {
-    return view('login');
+    $next = request('next', '/');
+    return view('login_page', compact('next'));
+})->name('login_page');
+
+Route::post('/login', function () {
+    $credentials = request()->only(['username', 'password']);
+    $next = request('next', '/');
+    
+    if (auth()->attempt($credentials)) {
+        session()->flash('success', 'You are now logged in!');
+        return redirect($next);
+    } else {
+        session()->flash('error', 'Invalid username or password!');
+        return redirect()->route('login_page', ['next' => $next]);
+    }
 })->name('login');
 
-Route::controller(AuthController::class)->group(function () {
-    Route::post('/login', 'login');
-    Route::get('/logout', 'logout')->name('logout');
-});
+Route::get('/logout', function () {
+    auth()->logout();
+    session()->flash('success', 'You have been logged out!');
+    return redirect('/');
+})->name('logout_page');
 
-// Admin interface
+// Admin routes
+Route::middleware(['auth', EnsureUserIsAdmin::class])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    
+    // Events management
+    Route::get('/admin/events', [AdminController::class, 'events'])->name('admin.events');
+    Route::post('/admin/events', [AdminController::class, 'storeEvent'])->name('admin.events.store');
+    Route::get('/admin/events/{event}/edit', [AdminController::class, 'editEvent'])->name('admin.events.edit');
+    Route::put('/admin/events/{event}', [AdminController::class, 'updateEvent'])->name('admin.events.update');
+    Route::delete('/admin/events/{event}', [AdminController::class, 'deleteEvent'])->name('admin.events.destroy');
+    
+    // Users management
+    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::post('/admin/users', [AdminController::class, 'storeUser'])->name('admin.users.store');
+    Route::get('/admin/users/{user}/edit', [AdminController::class, 'editUser'])->name('admin.users.edit');
+    Route::put('/admin/users/{user}', [AdminController::class, 'updateUser'])->name('admin.users.update');
+    Route::delete('/admin/users/{user}', [AdminController::class, 'deleteUser'])->name('admin.users.destroy');
+    Route::post('/admin/users/{user}/badges', [AdminController::class, 'addBadgesToUser'])->name('admin.users.badges.add');
+    Route::get('/admin/users/{user}/badges', [AdminController::class, 'getUserBadges'])->name('admin.users.badges.get');
+    Route::delete('/admin/users/{user}/badges', [AdminController::class, 'removeBadgesFromUser'])->name('admin.users.badges.remove');
+    
+    // Officers management
+    Route::get('/admin/officers', [AdminController::class, 'officers'])->name('admin.officers');
+    Route::post('/admin/officers', [AdminController::class, 'storeOfficer'])->name('admin.officers.store');
+    Route::get('/admin/officers/{officer}/edit', [AdminController::class, 'editOfficer'])->name('admin.officers.edit');
+    Route::put('/admin/officers/{officer}', [AdminController::class, 'updateOfficer'])->name('admin.officers.update');
+    Route::delete('/admin/officers/{officer}', [AdminController::class, 'deleteOfficer'])->name('admin.officers.destroy');
+    
+    // Badges management
+    Route::get('/admin/badges', [AdminController::class, 'badges'])->name('admin.badges');
+    Route::post('/admin/badges', [AdminController::class, 'storeBadge'])->name('admin.badges.store');
+    Route::get('/admin/badges/{badge}/edit', [AdminController::class, 'editBadge'])->name('admin.badges.edit');
+    Route::put('/admin/badges/{badge}', [AdminController::class, 'updateBadge'])->name('admin.badges.update');
+    Route::delete('/admin/badges/{badge}', [AdminController::class, 'deleteBadge'])->name('admin.badges.destroy');
+    
 
-Route::controller(AdminController::class)->group(function () {
-    Route::get('/admin', 'index')->middleware(['auth', EnsureUserIsAdmin::class])->name('admin');
-    Route::get('/admin/officers', 'officers')->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.officers');
-    Route::get('/admin/search/user', 'searchUsers')->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.search.user');
-});
-
-// Officers (both admin and non-admin)
-
-Route::controller(OfficerController::class)->group(function () {
-    Route::get('/officers', 'index')->name('officers');
-    Route::get('/officers/{year}', 'showByYear')->name('officers.by_year');
-    Route::post('/admin/officers', 'store')->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.officers.store');
-    Route::get('/admin/officers/{officer}', 'show')->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.officers.show');
-    Route::post('/admin/officers/{officer}', 'update')->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.officers.update');
-    Route::post('/admin/officers/{officer}/delete', 'destroy')->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.officers.delete');
-});
-
-// Events (both admin and non-admin)
-
-Route::controller(EventController::class)->group(function () {
-    Route::get('/events', 'index')->name('events');
-    Route::get('/event/{event}', 'show')->middleware('can:view,event')->name('event_page');
-});
-
-// Users
-
-Route::controller(UserController::class)->group(function () {
-    Route::get('/user/{user}', 'show')->middleware('can:view,user')->name('user_page');
-    Route::post('/user/{user}', 'update')->middleware('can:update,user')->name('user_page.update');
-});
+}); 

@@ -15,9 +15,10 @@ class EnsureUserIsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!$request->user()->is_admin) {
-            return redirect()->route('home');
+        if (!auth()->check() || !auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access.');
         }
+
         return $next($request);
     }
 }

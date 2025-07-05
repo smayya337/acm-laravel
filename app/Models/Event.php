@@ -11,13 +11,10 @@ class Event extends Model
     /** @use HasFactory<\Database\Factories\EventFactory> */
     use HasFactory;
 
-    protected function casts(): array
-    {
-        return [
-            'start' => 'datetime',
-            'end' => 'datetime',
-        ];
-    }
+    protected $casts = [
+        'start' => 'datetime',
+        'end' => 'datetime',
+    ];
 
     /**
      * The attributes that are mass assignable.

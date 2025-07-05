@@ -1,7 +1,16 @@
-@extends('app')
+@extends('layouts.app')
+
+@section('title', 'Events - ACM @ UVA')
 
 @section('content')
     <h1>Events</h1>
-    <p>Check out our upcoming events!</p>
-    @include('event_block')
-@endsection
+    <div class="mx-auto mt-8 grid grid-cols-1 gap-8 bg-base-200 p-8 rounded-box">
+        @if($events->isEmpty())
+            <p>No events found. Check back later!</p>
+        @else
+        @foreach($events as $event)
+            @include('event_card', ['event' => $event])
+        @endforeach
+        @endif
+    </div>
+@endsection 

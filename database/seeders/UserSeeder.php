@@ -105,6 +105,60 @@ class UserSeeder extends Seeder
                 'hidden' => false,
                 'is_admin' => false
             ],
+            [
+                'first_name' => 'Elizabeth',
+                'last_name' => 'Armstrong',
+                'username' => 'jwd2xc',
+                'email' => 'jwd2xc@virginia.edu',
+                'password' => Hash::make('password1234'),
+                'hidden' => false,
+                'is_admin' => false
+            ],
+            [
+                'first_name' => 'Niveen',
+                'last_name' => 'Abdul-Mohsen',
+                'username' => 'bvn9ad',
+                'email' => 'bvn9ad@virginia.edu',
+                'password' => Hash::make('password1234'),
+                'hidden' => false,
+                'is_admin' => false
+            ],
+            [
+                'first_name' => 'Gaby',
+                'last_name' => 'Flores',
+                'username' => 'kcp7wm',
+                'email' => 'kcp7wm@virginia.edu',
+                'password' => Hash::make('password1234'),
+                'hidden' => false,
+                'is_admin' => false
+            ],
+            [
+                'first_name' => 'Jasraj',
+                'last_name' => 'Sidhu',
+                'username' => 'yez9pj',
+                'email' => 'yez9pj@virginia.edu',
+                'password' => Hash::make('password1234'),
+                'hidden' => false,
+                'is_admin' => false
+            ],
+            [
+                'first_name' => 'Vivian',
+                'last_name' => 'Gao',
+                'username' => 'wvw4we',
+                'email' => 'wvw4we@virginia.edu',
+                'password' => Hash::make('password1234'),
+                'hidden' => false,
+                'is_admin' => false
+            ],
+            [
+                'first_name' => 'Vincent',
+                'last_name' => 'Trang',
+                'username' => 'vmf5yp',
+                'email' => 'vmf5yp@virginia.edu',
+                'password' => Hash::make('password1234'),
+                'hidden' => false,
+                'is_admin' => false
+            ],
         ];
         foreach ($users as $user) {
             DB::table('users')->insert($user);

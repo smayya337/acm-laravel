@@ -60,6 +60,8 @@ This works with VSCode Dev Containers. You'll need that extension and Docker to 
    php composer.phar dev
    ```
 
+6. **Open `http://localhost:8000` in your browser**
+
 ## Admin Access
 
 After seeding the database, you can log in with:

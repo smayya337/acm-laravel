@@ -15,12 +15,14 @@ This is a Laravel-based replication of the ACM @ UVA Django website, featuring a
 
 ## Technology Stack
 
-- **Backend**: Laravel 11
+- **Backend**: Laravel 10
 - **Frontend**: Tailwind CSS + DaisyUI
-- **Database**: MySQL/PostgreSQL
-- **Authentication**: Laravel's built-in authentication
+- **Database**: SQLite
+- **Authentication**: Laravel's built-in authentication (maybe NetBadge someday?)
 
-## Setup Instructions
+## Developer Setup Instructions
+
+This works with VSCode Dev Containers. You'll need that extension and Docker to run the containers.
 
 1. **Clone the repository**
    ```bash
@@ -28,38 +30,41 @@ This is a Laravel-based replication of the ACM @ UVA Django website, featuring a
    cd acm-laravel
    ```
 
-2. **Install dependencies**
-   ```bash
-   composer install
-   npm install
+2. **Open in Dev Container** -- wait for it to set up
+
+3. **Paste the following into `.env`**
+   ```
+   APP_NAME="ACM @ UVA"
+   APP_ENV=local
+   APP_KEY=
+   APP_DEBUG=true
+   APP_URL=http://localhost:8080
+
+   LOG_CHANNEL=stack
+   LOG_DEPRECATIONS_CHANNEL=null
+   LOG_LEVEL=debug
+
+   DB_CONNECTION=sqlite
    ```
 
-3. **Environment setup**
+4. **Run setup commands**
    ```bash
-   cp .env.example .env
+   php artisan migrate
+   php artisan db:seed
    php artisan key:generate
-   ```
-
-4. **Configure database**
-   - Update `.env` with your database credentials
-   - Run migrations: `php artisan migrate`
-   - Seed the database: `php artisan db:seed`
-
-5. **Storage setup**
-   ```bash
    php artisan storage:link
    ```
 
-6. **Start the development server**
+5. **Start the development server**
    ```bash
-   php artisan serve
+   php composer.phar dev
    ```
 
 ## Admin Access
 
 After seeding the database, you can log in with:
 - **Username**: admin
-- **Password**: password
+- **Password**: password1234
 
 Visit `/admin` to access the admin dashboard.
 
@@ -71,9 +76,6 @@ Visit `/admin` to access the admin dashboard.
 - **User Management**: Manage user accounts and profiles
 - **Officer Management**: Add and manage current and past officers
 - **Badge System**: Create and assign badges to users
-- **Carousel Management**: Manage home page carousel images
-- **HSPC Management**: Upload contest materials and problem sets
-- **Navigation Management**: Customize navbar links
 
 ### User Features
 - **Event RSVP**: Users can RSVP for events
@@ -112,17 +114,3 @@ resources/views/
 - **Event**: Events with attendees, images, and descriptions
 - **Officer**: Current and past officers with positions and years
 - **Badge**: User achievements with colors and descriptions
-- **CarouselImage**: Home page carousel images
-- **HSPCContest**: HSPC contest materials and problem sets
-- **NavBarLink**: Customizable navigation links
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License.

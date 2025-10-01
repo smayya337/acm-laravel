@@ -6,11 +6,11 @@
 	<h1>HSPC</h1>
     <p>Every year, the largest High School Programming Contest (HSPC) in the Mid-Atlantic region takes place here at UVA.</p>
     <div>
-        <a href="https://docs.google.com/document/d/1nun41JuAuGIfOWPgurogTc4Stgb6uwwXXfQY84RPbHc/edit?usp=sharing" class="btn pt-auto me-3 btn-primary">
+        <a href="https://docs.google.com/document/d/1SxM9PB4AEEc9qdDTftPhxVwQNonUl4UwyxaKf9hutzA/edit?usp=sharing" class="btn pt-auto me-3 btn-primary">
                             <i class="fa fa-info-circle me-2"></i>
             Information
         </a>
-        <a href="https://uvahspc2024.eventbrite.com/" class="btn pt-auto me-3 btn-secondary">
+        <a href="https://uvahspc2026.eventbrite.com/" class="btn pt-auto me-3 btn-secondary">
                             <i class="fa fa-user-plus me-2"></i>
             Register
         </a>
@@ -27,7 +27,7 @@
                     <input type="radio" name="hspc-faq-accordion" />
                     <div class="collapse-title font-semibold">What are the contest rules?</div>
                     <div class="collapse-content text-sm">
-                        <p>Rules can be found in the Logistics section of <a href="https://docs.google.com/document/d/1nun41JuAuGIfOWPgurogTc4Stgb6uwwXXfQY84RPbHc/edit?usp=sharing">this document</a>.</p>
+                        <p>Rules can be found in the Logistics section of our <a href="https://docs.google.com/document/d/1SxM9PB4AEEc9qdDTftPhxVwQNonUl4UwyxaKf9hutzA/edit?usp=sharing">information packet</a>.</p>
                         <p>For further comments or questions, please email <a href="mailto:hspc@virginia.edu">hspc@virginia.edu</a>.</p>
                     </div>
                 </div>
@@ -35,11 +35,21 @@
                     <input type="radio" name="hspc-faq-accordion" />
                     <div class="collapse-title font-semibold">What are the versions of software used?</div>
                     <div class="collapse-content text-sm">
-                        <p>Competitors will be allowed to use any IDE they choose. Our judging software will use the following language versions:</p>
+                        <p>Competitors will have access to the following IDEs:</p>
                         <ul>
-                            <li><code>g++</code> 5.4.0</li>
-                            <li>Python 3 version 3.5.2</li>
-                            <li>Java 8 (OpenJDK version 1.8.0_21)</li>
+                            <li>Eclipse 4.13</li>
+                            <li>IntelliJ IDEA Community Edition 2022.3</li>
+                            <li>CLion 2022.3</li>
+                            <li>PyCharm Community Edition 2022.3</li>
+                            <li>Code::Blocks 20.03-3.1</li>
+                            <li>Visual Studio Code 1.74.2</li>
+                        </ul>
+                        <p>Our judging software will use the following language versions:</p>
+                        <ul>
+                            <li>gcc/g++ 13.3.0</li>
+                            <li>Python 3 (PyPy version 7.3.15 providing Python 3.9.18)</li>
+                            <li>Java 17 (openjdk version 21.0.7)</li>
+                            <li>Kotlin 1.9.24</li>
                         </ul>
                         <p>We will be using DomJudge to submit and judge solutions.</p>
                     </div>
@@ -53,6 +63,8 @@
                             <li>2025 (zip coming soon)&nbsp;(<a href="/data/2025-contest.pdf">pdf</a>)</li>
                             <li>2024 (zip coming soon)&nbsp;(<a href="/data/2024-contest.pdf">pdf</a>)</li>
                             <li>2023 (zip coming soon)&nbsp;(<a href="/data/2023-contest.pdf">pdf</a>)</li>
+                            <li>2022 (zip coming soon)&nbsp;(<a href="/data/2022-contest.pdf">pdf</a>)</li>
+                            <li>2021 (zip coming soon)&nbsp;(<a href="/data/2021-contest.pdf">pdf</a>)</li>
                             <li>2019 (<a href="/data/2019-problems.zip">zip</a>)&nbsp;(<a href="/data/2019-contest.pdf">pdf</a>)</li>
                             <li>2018 (<a href="/data/2018-problems.zip">zip</a>)&nbsp;(<a href="/data/2018-contest.pdf">pdf</a>)</li>
                             <li>2017 (<a href="/data/2017-problems.zip">zip</a>)&nbsp;(<a href="/data/2017-contest.pdf">pdf</a>)</li>
@@ -69,15 +81,7 @@
                     <input type="radio" name="hspc-faq-accordion" />
                     <div class="collapse-title font-semibold">What reference materials will be available?</div>
                     <div class="collapse-content text-sm">
-                        <p>During the contest, the following will be available electronically:</p>
-                        <ul>
-                            <li><a href="http://docs.oracle.com/javase/8/docs/">Java JDK 8 Docs</a> (<a href="http://docs.oracle.com/javase/8/docs/api/">api</a>)</li>
-                            <li><a href="http://www.sgi.com/tech/stl/download.html">SGI's C++ STL Reference</a></li>
-                            <li><a href="https://acm.cs.virginia.edu/data/viunix.html"></a></li>
-                            <li>Language "cheat sheets" for both C++ and Java</li>
-                            <li>Python 3 reference</li>
-                            <li>Instructions for printing out code to work on</li>
-                        </ul>
+                        <p>We will announce this information closer to the competition. It will likely include language reference documentation.</p>
                     </div>
                 </div>
                 <div class="collapse collapse-arrow join-item border-base-300 border">
@@ -118,8 +122,8 @@
             </div>
         </div>
         <div>
-            <h2>Our Plan for 2024</h2>
-            <p>This year, we plan to host HSPC in person at UVA! All the information needed for the event can be found in the packet linked <a href="https://docs.google.com/document/d/19odkSbUa6XsJ60uxfE6PVteG_Wqu1Su3yDoympKFjxI/edit">here</a>.</p>
+            <h2>Our Plan for 2026</h2>
+            <p>This year, we plan to host HSPC in person at UVA! All the information needed for the event can be found in the packet linked <a href="https://docs.google.com/document/d/1SxM9PB4AEEc9qdDTftPhxVwQNonUl4UwyxaKf9hutzA/edit">here</a>.</p>
             <h2>Want to help out?</h2>
             <p>HSPC is run by UVA students! If you are a current or graduated UVA student and want to help inspire high school students, let us know at <a href="mailto:hspc@virginia.edu">hspc@virginia.edu</a> or join our <a href="https://discord.gg/wxWgbVs">Discord server</a> and type <code>!hspc</code>. Thank you! </p>
         </div>

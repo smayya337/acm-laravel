@@ -58,3 +58,7 @@
 a:not(.btn) {
     @apply hover:text-accent;
 }
+
+.prose {
+    max-width: unset;
+}

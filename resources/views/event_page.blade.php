@@ -72,15 +72,20 @@
 
         <div class="col-md-8">
             <h3>Attendees ({{ $event->users->count() }})</h3>
-            @if($event->users->count() > 0)
-                <div class="flex flex-wrap gap-8 p-8 bg-base-200 rounded-box not-prose">
-                    @foreach($event->users as $user)
-                        @include('user_card', ['user' => $user])
-                    @endforeach
-                </div>
-            @else
-                <p class="text-muted">@if($event->start > now()) No attendees yet. Be the first! @else No attendees. @endif</p>
-            @endif
+            @auth
+                @if($event->users->count() > 0)
+                    <div class="flex flex-wrap gap-8 p-8 bg-base-200 rounded-box not-prose">
+                        @foreach($event->users as $user)
+                            @include('user_card', ['user' => $user])
+                        @endforeach
+                    </div>
+                @else
+                    <p class="text-muted">@if($event->start > now()) No attendees yet. Be the first! @else No attendees. @endif</p>
+                @endif
+            @endauth
+            @guest
+                <p><a href="{{ route('login_page') }}?next={{ request()->path() }}">Log in</a> to view the attendees for this event!</p>
+            @endguest
         </div>
     </div>
 @endsection 

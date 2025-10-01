@@ -134,7 +134,7 @@ Route::get('/donate', function () {
 Route::get('/users/{username}', function ($username) {
     $user = \App\Models\User::where('username', $username)->first();
     
-    if (!$user || (auth()->user() && !auth()->user()->can('view', $user))) {
+    if (!$user || (auth()->check() && !auth()->user()->can('view', $user))) {
         abort(404);
     }
     
@@ -152,7 +152,7 @@ Route::post('/users/{username}', function ($username) {
         abort(400);
     }
 
-    if (!auth()->user()) {
+    if (!auth()->check()) {
         abort(401);
     }
 

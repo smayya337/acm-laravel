@@ -56,15 +56,20 @@
 
         <div class="col-md-8">
             <h3>Events Attended</h3>
-            @if($events_attended->count() > 0)
-                <div class="flex flex-wrap gap-8 p-8 bg-base-200 rounded-box not-prose">
-                    @foreach($events_attended as $event)
-                        @include('profile_event_card', ['event' => $event])
-                    @endforeach
-                </div>
-            @else
-                <p class="text-muted">No events attended yet.</p>
-            @endif
+            @auth
+                @if($events_attended->count() > 0)
+                    <div class="flex flex-wrap gap-8 p-8 bg-base-200 rounded-box not-prose">
+                        @foreach($events_attended as $event)
+                            @include('profile_event_card', ['event' => $event])
+                        @endforeach
+                    </div>
+                @else
+                    <p class="text-muted">No events attended yet.</p>
+                @endif
+            @endauth
+            @guest
+                <p><a href="{{ route('login_page') }}?next={{ request()->path() }}">Log in</a> to view the events this user has attended!</p>
+            @endguest
         </div>
     </div>
     

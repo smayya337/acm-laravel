@@ -17,20 +17,44 @@
     --font-mono: 'IBM Plex Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace !important;
 }
 
+@media (width >= 40rem) {
+    .prose {
+        max-width: 40rem;
+    }
+}
+
+@media (width >= 48rem) {
+    .prose {
+        max-width: 48rem;
+    }
+}
+
+@media (width >= 64rem) {
+    .prose {
+        max-width: 64rem;
+    }
+}
+
+@media (width >= 80rem) {
+    .prose {
+        max-width: 80rem;
+    }
+}
+
 @media (width >= 96rem) {
-    .container {
+    .container, .prose {
         max-width: 96rem;
     }
 }
 
 @media (width >= 112rem) {
-    .container {
+    .container, .prose {
         max-width: 112rem;
     }
 }
 
 @media (width >= 128rem) {
-    .container {
+    .container, .prose {
         max-width: 128rem;
     }
 }
@@ -57,8 +81,4 @@
 
 a:not(.btn) {
     @apply hover:text-accent;
-}
-
-.prose {
-    max-width: unset;
 }

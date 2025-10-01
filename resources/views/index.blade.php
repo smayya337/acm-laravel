@@ -21,7 +21,7 @@
   </div>
 </header>
 
-<div class="w-3xl mx-auto">
+<div class="w-3xl max-w-full mx-auto">
   <div class="carousel w-full mx-auto rounded-box">
     <div id="slide1" class="carousel-item relative w-full object-contain">
       <img

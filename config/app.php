@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/New_York',
 
     /*
     |--------------------------------------------------------------------------
@@ -185,4 +185,38 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Venmo Link
+    |--------------------------------------------------------------------------
+    |
+    | Link to the ACM Venmo.
+    |
+    */
+
+    'venmo_link' => env('VENMO_LINK', ''),
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Zelle Link
+    |--------------------------------------------------------------------------
+    |
+    | Link to the ACM Zelle.
+    |
+    */
+
+    'zelle_link' => env('ZELLE_LINK', ''),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Trusted Proxies
+    |--------------------------------------------------------------------------
+    |
+    | These hosts are trusted proxies (so that Laravel respects headers like
+    | X-Forwarded-For and X-Forwarded-Proto).
+    |
+    */
+
+    'trusted_proxies' => env('TRUSTED_PROXIES') ? explode(',', env('TRUSTED_PROXIES')) : [],
+    
 ];

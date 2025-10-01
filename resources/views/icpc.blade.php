@@ -11,10 +11,18 @@
             <div class="join join-vertical bg-base-100">
                 <div class="collapse collapse-arrow join-item border-base-300 border">
                     <input type="radio" name="icpc-accordion" />
+                    <div class="collapse-title font-semibold">2024: Astana, Kazakhstan</div>
+                    <div class="collapse-content text-sm">
+                        The team of Chase Hildebrand, Richard Wang, and Nicholas Winschel (with coaches Will McBurney and Charles Reiss) advanced
+                        to the world finals in Astana, Kazakhstan in September 2024.
+                    </div>
+                </div>
+                <div class="collapse collapse-arrow join-item border-base-300 border">
+                    <input type="radio" name="icpc-accordion" />
                     <div class="collapse-title font-semibold">2023: Luxor, Egypt</div>
                     <div class="collapse-content text-sm">
-                        The team of Edward Lue, Richard Wang, and Nicholas Winschel (with coach Mark Floryan) advanced
-                        to the world finals in Luxor, Egypt in April 2024.
+                        The team of Edward Lue, Richard Wang, and Nicholas Winschel (with coach Mark Floryan) qualified
+                        for the world finals in Luxor, Egypt in April 2024.
                     </div>
                 </div>
                 <div class="collapse collapse-arrow join-item border-base-300 border">
@@ -99,7 +107,7 @@
                 in the world. Each year over 30,000 contestants, comprising more than 10,000 teams from thousands of
                 institutions, compete in regional contests in the fall. The top 100 (or so) teams then advance to the
                 world finals, which is held throughout the world in the spring or early summer.</p>
-            <p>Over the past 25 years, UVA has qualified for the world finals ten times.</p>
+            <p>UVA has qualified for the world finals eleven times since 1999.</p>
             <p>
                 You can read more about ICPC <a
                     href="https://en.wikipedia.org/wiki/International_Collegiate_Programming_Contest">here</a>.
@@ -111,7 +119,7 @@
                 Each year, UVA sends ten teams (of three contestants each) to the regional contests, which are in late
                 October or early November. Anybody may participate; undergraduate students of all levels and first year
                 graduate students are allowed to compete. Teams start practicing as soon as the fall semester begins in
-                late August. If you are interested in getting involved, you can contact Will McBurney (pm8fc), the coach
+                late August. If you are interested in getting involved, you can contact Charles Reiss (cr4bd), the coach
                 of UVA's ICPC teams.
             </p>
         </div>

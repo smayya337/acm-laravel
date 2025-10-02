@@ -33,12 +33,14 @@
                 
                 <label class="label cursor-pointer">
                     <span class="label-text">Is Admin</span>
-                    <input type="checkbox" name="is_admin" id="edit_is_admin" class="checkbox">
+                    <input type="hidden" name="is_admin" value="0">
+                    <input type="checkbox" name="is_admin" id="edit_is_admin" class="checkbox" value="1">
                 </label>
-                
+
                 <label class="label cursor-pointer">
                     <span class="label-text">Hidden</span>
-                    <input type="checkbox" name="hidden" id="edit_hidden" class="checkbox">
+                    <input type="hidden" name="hidden" value="0">
+                    <input type="checkbox" name="hidden" id="edit_hidden" class="checkbox" value="1">
                 </label>
             </fieldset>
             

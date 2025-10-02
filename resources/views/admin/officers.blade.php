@@ -35,7 +35,7 @@
                                         </div>
                                     @else
                                         <div class="avatar avatar-placeholder">
-                                            <div class="bg-neutral text-neutral-content w-12 rounded-full">
+                                            <div class="bg-secondary text-secondary-content w-12 rounded-full">
                                                 <span>{{ substr($officer->user->first_name, 0, 1) }}{{ substr($officer->user->last_name, 0, 1) }}</span>
                                             </div>
                                         </div>

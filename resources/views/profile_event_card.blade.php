@@ -5,7 +5,7 @@
                 <img src="{{ Storage::url($event->image) }}" alt="{{ $event->name }}">
             </div>
         @else
-            <div class="h-full aspect-square bg-neutral text-neutral-content flex items-center justify-center">
+            <div class="h-full aspect-square bg-secondary text-secondary-content flex items-center justify-center">
                 <span class="text-lg font-bold">
                     <i class="fa fa-calendar"></i>
                 </span>

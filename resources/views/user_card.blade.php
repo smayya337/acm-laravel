@@ -8,7 +8,7 @@
             </div>
         @else
             <div class="avatar">
-                <div class="bg-neutral text-neutral-content w-12 h-12 rounded-full flex items-center justify-center">
+                <div class="bg-secondary text-secondary-content w-12 h-12 rounded-full flex items-center justify-center">
                     <span class="text-sm font-bold">{{ substr($user->first_name, 0, 1) }}{{ substr($user->last_name, 0, 1) }}</span>
                 </div>
             </div>

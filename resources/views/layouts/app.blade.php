@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="/favicon.ico">
     @stack('styles')
 </head>
@@ -53,7 +54,7 @@
                                     <img src="{{ Storage::url(auth()->user()->image) }}" alt="{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}" class="w-full h-full object-cover rounded-full">
                                 </div>
                             @else
-                                <div class="bg-neutral text-neutral-content rounded-full w-8 h-8 flex items-center justify-center">
+                                <div class="bg-secondary text-secondary-content rounded-full w-8 h-8 flex items-center justify-center">
                                     @if(auth()->user()->first_name && auth()->user()->last_name)
                                         <span class="text-xs">{{ substr(auth()->user()->first_name, 0, 1) }}{{ substr(auth()->user()->last_name, 0, 1) }}</span>
                                     @elseif(auth()->user()->first_name)

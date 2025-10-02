@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>About Us</h1>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 -mt-8">
     <div>
         <h2>Who are we?</h2>
         <p>The Association for Computing Machinery Chapter at the University of Virginia is a student chapter of the parent Association for Computing Machinery. The Chapter is a Contracted Independent Orginization (CIO) at the University of Virginia, and serves students, faculty, and staff of the University as well as members of the Charlottesville / Albemarle community.</p>

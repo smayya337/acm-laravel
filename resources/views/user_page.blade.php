@@ -10,8 +10,8 @@
                     @if($user->image)
                         <img src="{{ Storage::url($user->image) }}" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover mx-auto mb-4" alt="{{ $user->first_name }}">
                     @else
-                        <div class="w-32 h-32 md:w-40 md:h-40 bg-neutral rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-neutral-content text-2xl md:text-3xl font-bold">
+                        <div class="w-32 h-32 md:w-40 md:h-40 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-secondary-content text-2xl md:text-3xl font-bold">
                                 {{ strtoupper(substr($user->first_name, 0, 1) . substr($user->last_name, 0, 1)) }}
                             </span>
                         </div>
@@ -27,7 +27,6 @@
                     
                     @if($user->bio)
                         <div class="mb-4">
-                            <h3 class="font-semibold text-sm uppercase tracking-wide text-base-content/60 mb-2">Bio</h3>
                             <p class="text-sm leading-relaxed">{{ $user->bio }}</p>
                         </div>
                     @endif
@@ -55,8 +54,8 @@
         </div>
 
         <div class="col-md-8">
-            <h3>Events Attended</h3>
             @auth
+                <h3>Events Attended ({{ $events_attended->count() }})</h3>
                 @if($events_attended->count() > 0)
                     <div class="flex flex-wrap gap-8 p-8 bg-base-200 rounded-box not-prose">
                         @foreach($events_attended as $event)
@@ -68,6 +67,7 @@
                 @endif
             @endauth
             @guest
+                <h3>Events Attended</h3>
                 <p><a href="{{ route('login_page') }}?next={{ request()->path() }}">Log in</a> to view the events this user has attended!</p>
             @endguest
         </div>

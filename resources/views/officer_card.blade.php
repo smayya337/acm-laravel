@@ -15,7 +15,7 @@
         @if($officer->user->image)
         <img src="{{ Storage::url($officer->user->image) }}" class="w-full aspect-square object-cover" alt="{{ $officer->user->first_name }}">
         @else
-        <div class="w-full aspect-square bg-neutral text-neutral-content flex items-center justify-center">
+        <div class="w-full aspect-square bg-secondary text-secondary-content flex items-center justify-center">
             @if($officer->user->first_name && $officer->user->last_name)
                 <span class="text-4xl font-bold">{{ substr($officer->user->first_name, 0, 1) }}{{ substr($officer->user->last_name, 0, 1) }}</span>
             @elseif($officer->user->first_name)

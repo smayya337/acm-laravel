@@ -34,13 +34,13 @@ class ResetUserPassword extends Command
     {
         $username = text('What is the username of the account? (This is usually the computing ID.)', required: true);
         $password = password('What is the new password of the account?', required: true);
-        $passwordConfirmation = password('Type the password again to confirm:', required: true);
+        $password_confirmation = password('Type the password again to confirm:', required: true);
 
-        $data = compact('username', 'password', 'passwordConfirmation');
+        $data = compact('username', 'password', 'password_confirmation');
 
         $validator = Validator::make($data, [
             'username' => ['required', 'exists:users,username'],
-            'password' => ['required', 'confirmed:passwordConfirmation'],
+            'password' => ['required', 'confirmed'],
         ]);
 
         if ($validator->fails()) {

@@ -28,5 +28,9 @@
                 <button type="submit" class="btn btn-primary">Login</button>
             </div>
         </form>
+        <div class="divider py-4">OR</div>
+        <a href="{{ route('saml.login', ['next' => $next]) }}" class="btn btn-primary">
+            Login with SSO
+        </a>
     </div>
 @endsection 

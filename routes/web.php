@@ -5,6 +5,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SamlController;
 use App\Http\Middleware\EnsureUserIsAdmin;
 
 // Home page
@@ -187,6 +188,14 @@ Route::get('/logout', function () {
     session()->flash('success', 'You have been logged out!');
     return redirect('/');
 })->name('logout_page');
+
+// SAML Authentication routes
+Route::get('/saml/login', [SamlController::class, 'login'])->name('saml.login');
+Route::post('/saml/acs', [SamlController::class, 'acs'])->name('saml.acs');
+Route::get('/saml/logout', [SamlController::class, 'logout'])->name('saml.logout');
+Route::get('/saml/sls', [SamlController::class, 'sls'])->name('saml.sls');
+Route::post('/saml/sls', [SamlController::class, 'sls']);
+Route::get('/saml/metadata', [SamlController::class, 'metadata'])->name('saml.metadata');
 
 // Admin routes
 Route::middleware(['auth', EnsureUserIsAdmin::class])->group(function () {

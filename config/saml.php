@@ -121,4 +121,16 @@ return [
     */
 
     'auto_provision' => env('SAML_AUTO_PROVISION', true),
+
+    /*
+    |--------------------------------------------------------------------------
+    | SAML Enabled
+    |--------------------------------------------------------------------------
+    |
+    | Determines if SAML authentication is enabled. SAML is considered enabled
+    | only if the IDP entity ID is configured.
+    |
+    */
+
+    'enabled' => !empty(env('SAML_IDP_ENTITY_ID')),
 ];

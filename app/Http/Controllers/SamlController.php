@@ -14,6 +14,14 @@ use OneLogin\Saml2\Error as Saml2Error;
 class SamlController extends Controller
 {
     /**
+     * Check if SAML is enabled
+     */
+    private function isSamlEnabled(): bool
+    {
+        return config('saml.enabled', false);
+    }
+
+    /**
      * Get SAML configuration array for OneLogin library
      */
     private function getSamlConfig(): array
@@ -62,6 +70,10 @@ class SamlController extends Controller
      */
     public function login(Request $request): RedirectResponse
     {
+        if (!$this->isSamlEnabled()) {
+            return redirect()->route('login_page')->withErrors(['saml' => 'SAML authentication is not configured.']);
+        }
+
         try {
             $auth = new Saml2Auth($this->getSamlConfig());
             $returnTo = $request->query('next', route('index'));
@@ -84,6 +96,10 @@ class SamlController extends Controller
      */
     public function acs(Request $request): RedirectResponse
     {
+        if (!$this->isSamlEnabled()) {
+            return redirect()->route('login_page')->withErrors(['saml' => 'SAML authentication is not configured.']);
+        }
+
         try {
             $auth = new Saml2Auth($this->getSamlConfig());
             $auth->processResponse();
@@ -161,6 +177,14 @@ class SamlController extends Controller
      */
     public function logout(Request $request): RedirectResponse
     {
+        if (!$this->isSamlEnabled()) {
+            // Fallback to local logout
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->route('index');
+        }
+
         try {
             $auth = new Saml2Auth($this->getSamlConfig());
 
@@ -190,6 +214,13 @@ class SamlController extends Controller
      */
     public function sls(Request $request): RedirectResponse
     {
+        if (!$this->isSamlEnabled()) {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->route('index');
+        }
+
         try {
             $auth = new Saml2Auth($this->getSamlConfig());
             $auth->processSLO();
@@ -221,6 +252,10 @@ class SamlController extends Controller
      */
     public function metadata(): Response
     {
+        if (!$this->isSamlEnabled()) {
+            abort(404, 'SAML authentication is not configured.');
+        }
+
         try {
             $auth = new Saml2Auth($this->getSamlConfig());
             $settings = $auth->getSettings();

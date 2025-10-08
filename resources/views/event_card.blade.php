@@ -1,16 +1,16 @@
-<div class="card card-side bg-base-100 basis-sm w-full not-prose">
+<div class="card card-side bg-base-100 basis-sm w-full not-prose h-60">
     @if($event->image)
-        <img src="{{ Storage::url($event->image) }}" alt="{{ $event->name }}" class="aspect-square h-full object-cover">
+        <img src="{{ Storage::url($event->image) }}" alt="{{ $event->name }}" class="aspect-square h-full object-cover shrink-0">
     @else
-        <div class="aspect-square h-full bg-secondary text-secondary-content flex items-center justify-center">
+        <div class="aspect-square h-full bg-secondary text-secondary-content flex items-center justify-center shrink-0">
             <span class="text-4xl font-bold">
                 <i class="fa fa-calendar"></i>
             </span>
         </div>
     @endif
-    <div class="card-body grow">
+    <div class="card-body grow flex flex-col">
         <h5 class="card-title">{{ $event->name }}</h5>
-        <div class="mb-2">
+        <div class="mb-2 flex-grow">
             @if($event->description)
             <p class="card-text">{{ $event->description }}</p>
             @endif

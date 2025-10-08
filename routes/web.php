@@ -217,6 +217,7 @@ Route::middleware(['auth', EnsureUserIsAdmin::class])->group(function () {
     Route::post('/admin/users/{user}/badges', [AdminController::class, 'addBadgesToUser'])->name('admin.users.badges.add');
     Route::get('/admin/users/{user}/badges', [AdminController::class, 'getUserBadges'])->name('admin.users.badges.get');
     Route::delete('/admin/users/{user}/badges', [AdminController::class, 'removeBadgesFromUser'])->name('admin.users.badges.remove');
+    Route::post('/admin/users/{user}/reset-password', [AdminController::class, 'resetUserPassword'])->name('admin.users.reset-password');
     
     // Officers management
     Route::get('/admin/officers', [AdminController::class, 'officers'])->name('admin.officers');

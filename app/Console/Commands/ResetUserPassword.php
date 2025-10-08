@@ -40,7 +40,7 @@ class ResetUserPassword extends Command
 
         $validator = Validator::make($data, [
             'username' => ['required', 'exists:users,username'],
-            'password' => ['required', 'confirmed'],
+            'password' => ['required', 'min:8', 'confirmed'],
         ]);
 
         if ($validator->fails()) {

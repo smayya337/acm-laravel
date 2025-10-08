@@ -71,6 +71,7 @@
                                     <button class="btn btn-sm btn-outline" onclick="editUser({{ $user->id }})">Edit</button>
                                     <button class="btn btn-sm btn-primary" onclick="addBadgesToUser({{ $user->id }}, '{{ $user->first_name }} {{ $user->last_name }}')">Add Badges</button>
                                     <button class="btn btn-sm btn-warning" onclick="removeBadgesFromUser({{ $user->id }}, '{{ $user->first_name }} {{ $user->last_name }}')">Remove Badges</button>
+                                    <button class="btn btn-sm btn-info" onclick="resetUserPassword({{ $user->id }}, '{{ $user->first_name }} {{ $user->last_name }}')">Reset Password</button>
                                     <form method="POST" action="{{ route('admin.users.destroy', $user) }}" class="inline">
                                         @csrf
                                         @method('DELETE')
@@ -89,4 +90,5 @@
     @include('components.modals.edit-user-modal')
     @include('components.modals.add-badges-to-user-modal')
     @include('components.modals.remove-badges-from-user-modal')
+    @include('components.modals.reset-password-modal')
 @endsection 

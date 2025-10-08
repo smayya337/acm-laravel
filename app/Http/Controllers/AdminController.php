@@ -188,6 +188,19 @@ class AdminController extends Controller
         return redirect()->route('admin.users')->with('success', $message);
     }
 
+    public function resetUserPassword(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user->update([
+            'password' => bcrypt($validated['password'])
+        ]);
+
+        return redirect()->route('admin.users')->with('success', 'Password reset successfully!');
+    }
+
     // Officers management
     public function officers()
     {

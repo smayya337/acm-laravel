@@ -15,8 +15,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
     <!-- Navigation -->
-    <div class="w-full">
-        <nav class="navbar bg-base-100 shadow-md sticky top-0 z-50">
+    <nav class="navbar bg-base-100 shadow-md sticky top-0 z-50 w-full">
             <div class="navbar-start">
                 <!-- Mobile menu button -->
                 <div class="dropdown">
@@ -79,8 +78,7 @@
                     <a href="{{ route('login_page') }}?next={{ request()->path() }}" class="btn btn-ghost">Log in</a>
                 @endauth
             </div>
-        </nav>
-    </div>
+    </nav>
 
     <!-- Main Content -->
     <main class="flex-1">

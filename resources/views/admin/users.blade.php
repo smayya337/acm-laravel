@@ -17,7 +17,7 @@
                     <tr>
                         <th class="px-4">User</th>
                         <th class="px-4">Email</th>
-                        <th class="px-4">Badges</th>
+                        <th class="px-4 text-center">Badges</th>
                         <th class="px-4">Status</th>
                         <th class="px-4">Actions</th>
                     </tr>
@@ -51,12 +51,8 @@
                                 </div>
                             </td>
                             <td class="px-4">{{ $user->email }}</td>
-                            <td class="px-4">
-                                <div class="flex flex-wrap gap-1">
-                                    @foreach($user->badges as $badge)
-                                        <x-badge :badge="$badge" />
-                                    @endforeach
-                                </div>
+                            <td class="px-4 text-center">
+                                {{ $user->badges->count() }}
                             </td>
                             <td class="px-4">
                                 @if($user->is_admin)

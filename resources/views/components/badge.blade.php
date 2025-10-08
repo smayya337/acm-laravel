@@ -1,13 +1,13 @@
-@props(['badge'])
+@props(['badge', 'noHover' => false])
 
-@if($badge->description)
+@if($badge->description && !$noHover)
     <div class="tooltip" data-tip="{{ $badge->description }}">
         <span class="badge badge-{{ $badge->color }} hover:badge-{{ $badge->color }}-800">
             {{ $badge->name }}
         </span>
     </div>
 @else
-    <span class="badge badge-{{ $badge->color }} hover:badge-{{ $badge->color }}-800">
+    <span class="badge badge-{{ $badge->color }} {{ $noHover ? '' : 'hover:badge-' . $badge->color . '-800' }}">
         {{ $badge->name }}
     </span>
 @endif 

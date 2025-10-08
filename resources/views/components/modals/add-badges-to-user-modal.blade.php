@@ -12,7 +12,7 @@
                         <label class="label cursor-pointer justify-start gap-3">
                             <input type="checkbox" name="badge_ids[]" value="{{ $badge->id }}" class="checkbox">
                             <div class="flex items-center gap-2">
-                                <x-badge :badge="$badge" />
+                                <x-badge :badge="$badge" :no-hover="true" />
                                 @if($badge->description)
                                     <span class="text-sm opacity-70">{{ $badge->description }}</span>
                                 @endif

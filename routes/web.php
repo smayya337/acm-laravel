@@ -10,7 +10,14 @@ use App\Http\Middleware\EnsureUserIsAdmin;
 
 // Home page
 Route::get('/', function () {
-    return view('index');
+    // Get upcoming events: maximum of 5 events, or all events in the next month, whichever is fewer
+    $upcomingEvents = \App\Models\Event::where('start', '>=', now())
+        ->where('start', '<=', now()->addMonth())
+        ->orderBy('start')
+        ->take(5)
+        ->get();
+
+    return view('index', compact('upcomingEvents'));
 })->name('index');
 
 // About page

@@ -1,4 +1,4 @@
-<div class="card card-side bg-base-100 basis-sm w-full not-prose h-60">
+<div class="card card-side bg-base-100 basis-sm w-full not-prose h-50">
     @if($event->image)
         <img src="{{ Storage::url($event->image) }}" alt="{{ $event->name }}" class="aspect-square h-full object-cover shrink-0">
     @else

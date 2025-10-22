@@ -95,7 +95,20 @@
                     <input type="radio" name="hspc-faq-accordion" />
                     <div class="collapse-title font-semibold">What are the past results?</div>
                     <div class="collapse-content text-sm">
-                        <p>Past results are unavailable while we port all of our data over to a new website. We hope to have results back shortly.</p>
+                        <p>Past scoreboards are available for the following HSPC events:</p>
+                        <ul>
+                            <li><a href="/scoreboards/2025">2025</a></li>
+                            <li><a href="/scoreboards/2024">2024</a></li>
+                            <li><a href="/scoreboards/2023">2023</a></li>
+                            <li><a href="/scoreboards/2019">2019</a></li>
+                            <li><a href="/scoreboards/2018">2018</a></li>
+                            <li><a href="/scoreboards/2017">2017</a></li>
+                            <li><a href="/scoreboards/2016">2016</a></li>
+                            <li><a href="/scoreboards/2015">2015</a></li>
+                            <li><a href="/scoreboards/2014">2014</a></li>
+                            <li><a href="/scoreboards/2013">2013</a></li>
+                            <li><a href="/scoreboards/2012">2012</a></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="collapse collapse-arrow join-item border-base-300 border">

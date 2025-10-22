@@ -30,7 +30,7 @@
                                     @if($event->image)
                                         <div class="avatar">
                                             <div class="mask mask-squircle w-12 h-12">
-                                                <img src="{{ $event->image }}" alt="{{ $event->name }}">
+                                                <img src="{{ Storage::url($event->image) }}" alt="{{ $event->name }}">
                                             </div>
                                         </div>
                                     @endif

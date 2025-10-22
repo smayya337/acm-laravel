@@ -321,5 +321,209 @@ class AdminController extends Controller
         return redirect()->route('admin.badges')->with('success', 'Badge deleted successfully!');
     }
 
+    // API endpoints for users
+    public function apiGetUsers(Request $request)
+    {
+        $users = User::with('badges')->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $users->map(function($user) {
+                return [
+                    'id' => $user->id,
+                    'username' => $user->username,
+                    'email' => $user->email,
+                    'first_name' => $user->first_name,
+                    'last_name' => $user->last_name,
+                    'is_admin' => $user->is_admin,
+                    'hidden' => $user->hidden,
+                    'bio' => $user->bio,
+                    'image' => $user->image,
+                    'badges' => $user->badges->map(function($badge) {
+                        return [
+                            'id' => $badge->id,
+                            'name' => $badge->name,
+                            'color' => $badge->color,
+                            'description' => $badge->description,
+                        ];
+                    }),
+                    'created_at' => $user->created_at,
+                    'updated_at' => $user->updated_at,
+                ];
+            })
+        ]);
+    }
+
+    public function apiCreateUser(Request $request)
+    {
+        $validated = $request->validate([
+            'username' => 'required|string|unique:users',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:8',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'is_admin' => 'boolean',
+            'hidden' => 'boolean',
+            'bio' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:' . FileHelper::getMaxUploadSizeKB()
+        ]);
+
+        $validated['password'] = bcrypt($validated['password']);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('users', 'public');
+        }
+
+        $user = User::create($validated);
+        $user->load('badges');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'User created successfully!',
+            'data' => [
+                'id' => $user->id,
+                'username' => $user->username,
+                'email' => $user->email,
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'is_admin' => $user->is_admin,
+                'hidden' => $user->hidden,
+                'bio' => $user->bio,
+                'image' => $user->image,
+                'badges' => $user->badges,
+                'created_at' => $user->created_at,
+                'updated_at' => $user->updated_at,
+            ]
+        ], 201);
+    }
+
+    // API endpoints for officers
+    public function apiGetOfficers(Request $request)
+    {
+        $officers = Officer::with('user')->orderBy('year', 'desc')->orderBy('sort_order')->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $officers->map(function($officer) {
+                return [
+                    'id' => $officer->id,
+                    'position' => $officer->position,
+                    'year' => $officer->year,
+                    'sort_order' => $officer->sort_order,
+                    'user_id' => $officer->user_id,
+                    'user' => [
+                        'id' => $officer->user->id,
+                        'username' => $officer->user->username,
+                        'email' => $officer->user->email,
+                        'first_name' => $officer->user->first_name,
+                        'last_name' => $officer->user->last_name,
+                        'bio' => $officer->user->bio,
+                        'image' => $officer->user->image,
+                        'hidden' => $officer->user->hidden,
+                    ],
+                    'created_at' => $officer->created_at,
+                    'updated_at' => $officer->updated_at,
+                ];
+            })
+        ]);
+    }
+
+    public function apiCreateOfficer(Request $request)
+    {
+        $validated = $request->validate([
+            'position' => 'required|string|max:30',
+            'sort_order' => 'required|integer',
+            'year' => 'required|integer',
+            'user_id' => 'required|exists:users,id'
+        ]);
+
+        $officer = Officer::create($validated);
+        $officer->load('user');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Officer created successfully!',
+            'data' => [
+                'id' => $officer->id,
+                'position' => $officer->position,
+                'year' => $officer->year,
+                'sort_order' => $officer->sort_order,
+                'user_id' => $officer->user_id,
+                'user' => [
+                    'id' => $officer->user->id,
+                    'username' => $officer->user->username,
+                    'email' => $officer->user->email,
+                    'first_name' => $officer->user->first_name,
+                    'last_name' => $officer->user->last_name,
+                    'bio' => $officer->user->bio,
+                    'image' => $officer->user->image,
+                    'hidden' => $officer->user->hidden,
+                ],
+                'created_at' => $officer->created_at,
+                'updated_at' => $officer->updated_at,
+            ]
+        ], 201);
+    }
+
+    public function apiDeleteAllOfficers()
+    {
+        \Log::info('apiDeleteAllOfficers called');
+
+        $count = Officer::count();
+        \Log::info("Officer count before delete: {$count}");
+
+        // Use delete instead of truncate to ensure it works with foreign keys
+        Officer::query()->delete();
+
+        $afterCount = Officer::count();
+        \Log::info("Officer count after delete: {$afterCount}");
+
+        return response()->json([
+            'success' => true,
+            'message' => "All officers deleted successfully! ({$count} records removed)",
+            'deleted_count' => $count
+        ]);
+    }
+
+    // API Tokens management
+    public function tokens()
+    {
+        $users = User::orderBy('first_name')->orderBy('last_name')->get();
+        $tokens = \Laravel\Sanctum\PersonalAccessToken::with('tokenable')
+            ->whereHasMorph('tokenable', [User::class])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('admin.tokens', compact('tokens', 'users'));
+    }
+
+    public function createToken(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'user_id' => 'required|exists:users,id',
+            'abilities' => 'nullable|array',
+        ]);
+
+        $user = User::findOrFail($validated['user_id']);
+        $abilities = $validated['abilities'] ?? ['*'];
+
+        $token = $user->createToken($validated['name'], $abilities);
+
+        // Store the plain text token in the session to display it once
+        session()->flash('new_token', $token->plainTextToken);
+        session()->flash('success', 'API token created successfully! Make sure to copy it now, as it will not be shown again.');
+
+        return redirect()->route('admin.tokens');
+    }
+
+    public function deleteToken($tokenId)
+    {
+        $token = \Laravel\Sanctum\PersonalAccessToken::findOrFail($tokenId);
+        $token->delete();
+
+        return redirect()->route('admin.tokens')->with('success', 'Token deleted successfully!');
+    }
+
 
 } 

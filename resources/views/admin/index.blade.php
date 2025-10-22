@@ -71,7 +71,16 @@
                     </div>
                 </div>
             </div>
-            
+
+            <div class="card bg-base-100 shadow-md not-prose">
+                <div class="card-body">
+                    <h2 class="card-title">API Tokens</h2>
+                    <p>Manage API authentication tokens</p>
+                    <div class="card-actions justify-end gap-4">
+                        <a href="{{ route('admin.tokens') }}" class="btn btn-primary">Manage Tokens</a>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

@@ -239,6 +239,10 @@ Route::middleware(['auth', EnsureUserIsAdmin::class])->group(function () {
     Route::get('/admin/badges/{badge}/edit', [AdminController::class, 'editBadge'])->name('admin.badges.edit');
     Route::put('/admin/badges/{badge}', [AdminController::class, 'updateBadge'])->name('admin.badges.update');
     Route::delete('/admin/badges/{badge}', [AdminController::class, 'deleteBadge'])->name('admin.badges.destroy');
-    
+
+    // API Tokens management
+    Route::get('/admin/tokens', [AdminController::class, 'tokens'])->name('admin.tokens');
+    Route::post('/admin/tokens', [AdminController::class, 'createToken'])->name('admin.tokens.create');
+    Route::delete('/admin/tokens/{token}', [AdminController::class, 'deleteToken'])->name('admin.tokens.destroy');
 
 }); 

@@ -60,7 +60,7 @@
                     <div class="collapse-content text-sm">
                         <p>You can read past problem sets (PDF) and see full solutions with sample and judge input/output (zip) here:</p>
                         <ul class="list-unstyled">
-                            <li>2025 (zip coming soon)&nbsp;(<a href="/data/2025-contest.pdf">pdf</a>)</li>
+                            <li>2025 (<a href="/data/2025-problems.zip">zip</a>)&nbsp;(<a href="/data/2025-contest.pdf">pdf</a>)</li>
                             <li>2024 (zip coming soon)&nbsp;(<a href="/data/2024-contest.pdf">pdf</a>)</li>
                             <li>2023 (zip coming soon)&nbsp;(<a href="/data/2023-contest.pdf">pdf</a>)</li>
                             <li>2022 (zip coming soon)&nbsp;(<a href="/data/2022-contest.pdf">pdf</a>)</li>

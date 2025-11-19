@@ -18,7 +18,7 @@
         <h2>Supporting ACM @ UVA</h2>
     <p>ACM is a 501(c) nonprofit organization. Our funds go towards hosting great events for students, including HSPC.</p>
     <h2>Bylaws</h2>
-    <p>The chapter bylaws are available <a href="/2020-ACM-Bylaws.pdf">here</a>.</p>
+    <p>The chapter bylaws are available <a href="/ACM 2025 Bylaws.pdf">here</a>.</p>
     </div>
     </div>
     <div>

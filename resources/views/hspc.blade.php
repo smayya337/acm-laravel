@@ -151,7 +151,7 @@
                     <input type="radio" name="hspc-registration-accordion" />
                     <div class="collapse-title font-semibold">Where do I register?</div>
                     <div class="collapse-content text-sm">
-                        <p>Previous year's coaches should receive an email from us asking about registration. If you do not receive an email or are a new team interested in participating, please register <a href="https://uvahspc2024.eventbrite.com/">here</a>.</p>
+                        <p>Previous year's coaches should receive an email from us asking about registration. If you do not receive an email or are a new team interested in participating, please register <a href="https://uvahspc2026.eventbrite.com/">here</a>.</p>
                     </div>
                 </div>
                 <div class="collapse collapse-arrow join-item border-base-300 border">

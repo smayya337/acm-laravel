@@ -6,7 +6,7 @@
 	<h1>HSPC</h1>
     <p>Every year, the largest High School Programming Contest (HSPC) in the Mid-Atlantic region takes place here at UVA.</p>
     <div>
-        <a href="https://docs.google.com/document/d/1SxM9PB4AEEc9qdDTftPhxVwQNonUl4UwyxaKf9hutzA/edit?usp=sharing" class="btn pt-auto me-3 btn-primary">
+        <a href="https://docs.google.com/document/d/1SqNWaz4f7bvELBaL43CsFzSB0lH9HEygats-4vima-4/edit" class="btn pt-auto me-3 btn-primary">
                             <i class="fa fa-info-circle me-2"></i>
             Information
         </a>
@@ -27,7 +27,7 @@
                     <input type="radio" name="hspc-faq-accordion" />
                     <div class="collapse-title font-semibold">What are the contest rules?</div>
                     <div class="collapse-content text-sm">
-                        <p>Rules can be found in the Logistics section of our <a href="https://docs.google.com/document/d/1SxM9PB4AEEc9qdDTftPhxVwQNonUl4UwyxaKf9hutzA/edit?usp=sharing">information packet</a>.</p>
+                        <p>Rules can be found in the Logistics section of our <a href="https://docs.google.com/document/d/1SqNWaz4f7bvELBaL43CsFzSB0lH9HEygats-4vima-4/edit">information packet</a>.</p>
                         <p>For further comments or questions, please email <a href="mailto:hspc@virginia.edu">hspc@virginia.edu</a>.</p>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
         </div>
         <div>
             <h2>Our Plan for 2026</h2>
-            <p>This year, we plan to host HSPC in person at UVA! All the information needed for the event can be found in the packet linked <a href="https://docs.google.com/document/d/1SxM9PB4AEEc9qdDTftPhxVwQNonUl4UwyxaKf9hutzA/edit">here</a>.</p>
+            <p>This year, we plan to host HSPC in person at UVA! All the information needed for the event can be found in the packet linked <a href="https://docs.google.com/document/d/1SqNWaz4f7bvELBaL43CsFzSB0lH9HEygats-4vima-4/edit">here</a>.</p>
             <h2>Want to help out?</h2>
             <p>HSPC is run by UVA students! If you are a current or graduated UVA student and want to help inspire high school students, let us know at <a href="mailto:hspc@virginia.edu">hspc@virginia.edu</a> or join our <a href="https://discord.gg/wxWgbVs">Discord server</a> and type <code>!hspc</code>. Thank you! </p>
         </div>

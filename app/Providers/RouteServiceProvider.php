@@ -24,8 +24,24 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Default API rate limiter (60 requests per minute for public endpoints)
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+        });
+
+        // Authenticated API rate limiter (120 requests per minute)
+        RateLimiter::for('api:authenticated', function (Request $request) {
+            return Limit::perMinute(120)->by($request->user()?->id ?: $request->ip());
+        });
+
+        // Admin API rate limiter (300 requests per minute)
+        RateLimiter::for('api:admin', function (Request $request) {
+            return Limit::perMinute(300)->by($request->user()?->id ?: $request->ip());
+        });
+
+        // Login rate limiter (5 attempts per minute per IP)
+        RateLimiter::for('api:login', function (Request $request) {
+            return Limit::perMinute(5)->by($request->ip());
         });
 
         $this->routes(function () {

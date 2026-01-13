@@ -22,7 +22,10 @@
                     <div class="text-sm mt-2">
                         <p class="mb-2">Make sure to copy your new API token now. You won't be able to see it again!</p>
                         <div class="flex items-center gap-2">
-                            <input type="text" readonly value="{{ session('new_token') }}" id="newTokenValue" class="input input-bordered flex-1 font-mono text-sm">
+                            @php
+                                $displayToken = explode('|', session('new_token'))[1] ?? session('new_token');
+                            @endphp
+                            <input type="text" readonly value="{{ $displayToken }}" id="newTokenValue" class="input input-bordered flex-1 font-mono text-sm bg-base-100 text-base-content">
                             <button class="btn btn-sm" onclick="copyToken()">
                                 <i class="fa fa-copy"></i> Copy
                             </button>

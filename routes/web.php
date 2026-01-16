@@ -20,6 +20,13 @@ Route::get('/', function () {
     return view('index', compact('upcomingEvents'));
 })->name('index');
 
+// 301 Redirects for old .php URLs
+Route::permanentRedirect('/hspc.php', '/hspc');
+Route::permanentRedirect('/icpc.php', '/icpc');
+Route::permanentRedirect('/about.php', '/about');
+Route::permanentRedirect('/donate.php', '/donate');
+Route::permanentRedirect('/events.php', '/events');
+
 // About page
 Route::get('/about', function () {
     try {

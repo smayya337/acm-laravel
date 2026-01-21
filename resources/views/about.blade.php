@@ -3,7 +3,7 @@
 @section('title', 'About - ACM @ UVA')
 
 @section('content')
-    <h1>About Us</h1>
+    <h1 class="center-on-mobile">About Us</h1>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 -mt-8">
     <div>
         <h2>Who are we?</h2>

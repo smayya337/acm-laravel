@@ -82,3 +82,7 @@
 a:not(.btn) {
     @apply hover:text-accent;
 }
+
+.center-on-mobile {
+    @apply text-center md:text-left;
+}

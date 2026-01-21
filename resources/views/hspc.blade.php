@@ -3,22 +3,19 @@
 @section('title', 'HSPC - ACM @ UVA')
 
 @section('content')
-	<h1>HSPC</h1>
-    <p>Every year, the largest High School Programming Contest (HSPC) in the Mid-Atlantic region takes place here at UVA.</p>
-    <div>
-        <a href="https://docs.google.com/document/d/1SqNWaz4f7bvELBaL43CsFzSB0lH9HEygats-4vima-4/edit" class="btn pt-auto me-3 btn-primary">
-                            <i class="fa fa-info-circle me-2"></i>
-            Information
+	<h1 class="center-on-mobile">HSPC</h1>
+    <p class="center-on-mobile">Every year, the largest High School Programming Contest (HSPC) in the Mid-Atlantic region takes place here at UVA.</p>
+    <nav class="mt-3 flex flex-col md:flex-row gap-4 justify-center items-center mb-4" aria-label="Quick links">
+        <a class="btn btn-primary flex items-center gap-2" href="https://docs.google.com/document/d/1SqNWaz4f7bvELBaL43CsFzSB0lH9HEygats-4vima-4/edit" target="_blank" rel="noopener" aria-label="HSPC Information Packet">
+          <i class="fa fa-info-circle me-2"></i> Information
         </a>
-        <a href="https://uvahspc2026.eventbrite.com/" class="btn pt-auto me-3 btn-secondary">
-                            <i class="fa fa-user-plus me-2"></i>
-            Register
+        <a href="https://uvahspc2026.eventbrite.com/" target="_blank" rel="noopener" class="btn btn-secondary flex items-center gap-2" aria-label="Register">
+          <i class="fa-solid fa-user-plus fa-lg"></i> Register
         </a>
-        <a href="mailto:hspc@virginia.edu" class="btn pt-auto me-3 btn-accent">
-                            <i class="fa fa-envelope me-2"></i>
-            Contact Us
+        <a href="mailto:hspc@virginia.edu" class="btn btn-accent flex items-center gap-2" aria-label="Contact ACM Officers">
+          <i class="fa-solid fa-envelope fa-lg"></i> Contact
         </a>
-    </div>
+      </nav>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
             <h2>Frequently Asked Questions</h2>

@@ -5,7 +5,7 @@
 @section('content')
     <div class="container mx-auto">
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold">Manage Officers</h1>
+            <h1 class="text-3xl font-bold mb-0">Manage Officers</h1>
             <button class="btn btn-primary" onclick="document.getElementById('createOfficerModal').showModal()">
                 <i class="fa fa-plus"></i> Add Officer
             </button>

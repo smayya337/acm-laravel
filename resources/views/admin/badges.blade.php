@@ -5,7 +5,7 @@
 @section('content')
     <div class="container mx-auto">
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold">Manage Badges</h1>
+            <h1 class="text-3xl font-bold mb-0">Manage Badges</h1>
             <button class="btn btn-primary" onclick="document.getElementById('createBadgeModal').showModal()">
                 <i class="fa fa-plus"></i> Create Badge
             </button>

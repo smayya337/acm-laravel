@@ -5,7 +5,7 @@
 @section('content')
     <div class="container mx-auto">
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold">Manage Events</h1>
+            <h1 class="text-3xl font-bold mb-0">Manage Events</h1>
             <button class="btn btn-primary" onclick="document.getElementById('createEventModal').showModal()">
                 <i class="fa fa-plus"></i> Create Event
             </button>

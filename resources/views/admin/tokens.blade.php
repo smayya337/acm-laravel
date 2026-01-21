@@ -5,7 +5,7 @@
 @section('content')
     <div class="container mx-auto">
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold">Manage API Tokens</h1>
+            <h1 class="text-3xl font-bold mb-0">Manage API Tokens</h1>
             <button class="btn btn-primary" onclick="document.getElementById('createTokenModal').showModal()">
                 <i class="fa fa-plus"></i> Create Token
             </button>

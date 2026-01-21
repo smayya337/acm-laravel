@@ -58,7 +58,7 @@
                                         </div>
                                     @endif
                                 </label>
-                                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-md bg-base-100 rounded-box w-52">
+                                <ul tabindex="0" class="menu dropdown-content mt-3 z-[1] p-2 shadow-md bg-base-100 rounded-box w-52">
                                     @if(!auth()->user()->hidden)
                                         <li><a href="{{ route('user_page', auth()->user()->username) }}"><i class="fa fa-user mr-2"></i>Profile</a></li>
                                     @endif

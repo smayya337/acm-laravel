@@ -5,7 +5,7 @@
 @section('content')
 	<h1 class="center-on-mobile">HSPC</h1>
     <p class="center-on-mobile">Every year, the largest High School Programming Contest (HSPC) in the Mid-Atlantic region takes place here at UVA.</p>
-    <nav class="mt-3 flex flex-col md:flex-row gap-4 justify-center items-center mb-4" aria-label="Quick links">
+    <nav class="mt-3 flex flex-col md:flex-row gap-4 justify-center md:justify-start items-center mb-4" aria-label="Quick links">
         <a class="btn btn-primary flex items-center gap-2" href="https://docs.google.com/document/d/1SqNWaz4f7bvELBaL43CsFzSB0lH9HEygats-4vima-4/edit" target="_blank" rel="noopener" aria-label="HSPC Information Packet">
           <i class="fa fa-info-circle me-2"></i> Information
         </a>

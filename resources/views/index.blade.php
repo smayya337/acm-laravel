@@ -24,7 +24,7 @@
     <div class="carousel w-full rounded-box not-prose md:h-[500px]" id="home-carousel">
       <div id="slide1" class="carousel-item relative w-full h-full">
         <img
-          src="{{ asset('images/professor_dinner.jpg') }}"
+          src="{{ asset('images/hspc_volunteers.jpg') }}"
           alt="Professor dinner"
           class="w-full h-full object-contain" />
         <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
@@ -34,7 +34,7 @@
       </div>
       <div id="slide2" class="carousel-item relative w-full h-full">
         <img
-          src="{{ asset('images/corn_maze.jpg') }}"
+          src="{{ asset('images/bingo_winners.jpg') }}"
           alt="Corn maze"
           class="w-full h-full object-contain" />
         <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
@@ -44,7 +44,7 @@
       </div>
       <div id="slide3" class="carousel-item relative w-full h-full">
         <img
-          src="{{ asset('images/pumpkin_trip.jpg') }}"
+          src="{{ asset('images/pumpkin_painting.jpg') }}"
           alt="Pumpkin trip"
           class="w-full h-full object-contain" />
         <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
@@ -54,7 +54,7 @@
       </div>
       <div id="slide4" class="carousel-item relative w-full h-full">
         <img
-          src="{{ asset('images/rope_course.jpg') }}"
+          src="{{ asset('images/professor_dinner.jpg') }}"
           alt="Rope course"
           class="w-full h-full object-contain" />
         <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
@@ -142,4 +142,4 @@ function resizeHomeContent() {
 window.addEventListener('load', resizeHomeContent);
 window.addEventListener('resize', resizeHomeContent);
 </script>
-@endsection 
+@endsection
